@@ -15,7 +15,7 @@ I can't do this alone, so please help me. For this to work we need a big communi
 ### Step 1
 
 ```bash
-git clone git@github.com:intermine/wizard.git
+git clone git@github.com:Rhydium/vurtuality-website.git
 cd wizard
 ```
 
