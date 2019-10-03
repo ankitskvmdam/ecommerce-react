@@ -41,6 +41,7 @@ visit http://localhost:8080
 ## Contributors
 
 * **Rhydium** - *Initial founder of Vurtuality* - [Rhydium](https://github.com/Rhydium)
+* **Ankit Kumar** - *External contributor* - [ankitskvmdam](https://github.com/ankitskvmdam)
 
 ## License
 
