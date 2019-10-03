@@ -1,6 +1,9 @@
 # Ignoring node_modules
 **/node_modules/**
 
+# Ignoring .idea
+**/.idea/
+
 # Ignoring .DS_Store (macOS file)
 **/.DS_Store
 
