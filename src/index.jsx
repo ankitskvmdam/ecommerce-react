@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 import history from './common/script/history';
 import './common/stylesheet/main.scss';
-import WelcomePage  from "./components/welcome_page";
+import LoginPage from "./components/login_page"
 
 class Index extends React.Component{
     constructor(props){
@@ -13,7 +13,7 @@ class Index extends React.Component{
     render(){
         return(
            <Router history={history}>
-               <Route path="/" component={WelcomePage} />
+               <Route path="/" component={LoginPage} />
            </Router>
         )
     }

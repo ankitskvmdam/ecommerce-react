@@ -1,0 +1,11 @@
+@include font-face('Inknut-regular', "../assets/fonts/inknut/regular.ttf", "truetype");
+@include font-face('Inknut-bold', "../assets/fonts/inknut/bold.ttf", "truetype");
+@include font-face('Inknut-semibold', "../assets/fonts/inknut/semi_bold.ttf", "truetype");
+@include font-face('Inknut-extrabold', "../assets/fonts/inknut/extra_bold.ttf", "truetype");
+@include font-face('Inknut-light', "../assets/fonts/inknut/light.ttf", "truetype");
+
+$regular-font: "Inknut-regular";
+$light-font: "Inknut-light";
+$bold-font: "Inknut-bold";
+$semi-bold-font: "Inknut-semibold";
+$extra-bold-font: "Inknut-extrabold";

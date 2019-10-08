@@ -1,1 +1,10 @@
-@import './base.scss'
+// Third party scss
+
+//End third party scss
+
+@import "./mixin.scss";
+@import "./fonts.scss";
+@import './base.scss';
+
+// Login Page
+@import "../../components/login_page"

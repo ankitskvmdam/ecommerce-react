@@ -14,6 +14,10 @@ const config = {
         filename : '[name][hash].js',
         publicPath : "/"
     },
+    
+    devServer: {
+        historyApiFallback: true,
+    },
 
     resolve: {
         extensions : ['.js','.jsx','.css','.sass', '.scss']
