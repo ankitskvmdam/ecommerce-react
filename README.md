@@ -6,7 +6,7 @@ We will be doing this by setting up various tutorials, forums and lots of inform
 
 I can't do this alone, so please help me. For this to work we need a big community that is wanting to help other people.
 
-## To Run
+## Running the website in your own environment
 
 ### Requirements
 - git
@@ -14,6 +14,7 @@ I can't do this alone, so please help me. For this to work we need a big communi
 
 ### Step 1
 
+First you have to clone the repository and `cd` to the folder where it's cloned.
 ```bash
 git clone git@github.com:Rhydium/vurtuality-website.git
 cd vurtuality-website
@@ -21,26 +22,29 @@ cd vurtuality-website
 
 ### Step 2
 
+You'll need to run `npm install` to install all dependencies, if you don't do this it won't work.
 ```bash
 npm install
 ```
 
 ### Step 3
 
-#### To build the project
+#### Building for production use.
+For using the website in production it's advised to first run the command.
 ```bash
 npm run build
 ```
 
-#### To run to project in developer mode
+#### Running the website for development purposes.
+Running the website for development purposes is easy, just run the command below and acces it on http://localhost:8080
 ```bash
 npm run dev
 ```
-visit http://localhost:8080
 
 ## Contributors
 
 * **Rhydium** - *Initial founder of Vurtuality* - [Rhydium](https://github.com/Rhydium)
+* **Ankit Kumar** - *External contributor* - [ankitskvmdam](https://github.com/ankitskvmdam)
 
 ## License
 
