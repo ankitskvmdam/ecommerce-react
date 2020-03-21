@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 import history from './common/script/history';
 import './common/stylesheet/main.scss';
-import LoginPage from "./components/login_page"
+import Home from './components/index'
 
 class Index extends React.Component{
     constructor(props){
@@ -13,11 +13,11 @@ class Index extends React.Component{
     render(){
         return(
            <Router history={history}>
-               <Route path="/" component={LoginPage} />
+               <Route path="/" component={Home} />
            </Router>
         )
     }
 }
 
-ReactDOM.render(<Index />, document.getElementById("vurtuality-app"));
+ReactDOM.render(<Index />, document.getElementById("ecommerce-react"));
 

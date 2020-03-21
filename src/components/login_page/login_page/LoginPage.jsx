@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { FaEnvelope, FaLock, FaCaretRight } from "react-icons/fa"
+import { SELLER_LOGIN, SELLER_FORGOT_PASSWORD, SELLER_REGISTRATION } from '../../../common/script/url'
 
 class LoginPage extends React.Component{
     constructor(props){
@@ -26,18 +27,19 @@ class LoginPage extends React.Component{
                         <input className="input-box" type="password" placeholder="Password"/>
                     </div>
                     <div className="form-link-container">
-                        <Link to="/forgot_password">Forgot password?</Link>
+                        <Link to={SELLER_FORGOT_PASSWORD}>Forgot password?</Link>
+                        <Link to={SELLER_REGISTRATION}>Create Account <FaCaretRight/></Link>                        
                     </div>
 
                     <div className="form-link-con">
                         <div className="form-button main-background">
-                            <Link top="/">
+                            <Link to={SELLER_LOGIN}>
                                 Login
                             </Link>
                         </div>
                     </div>
                     <div className="form-link-container">
-                        <Link to="/register">Create Account <FaCaretRight/></Link>                        
+                        
                     </div>
 
                 </div>

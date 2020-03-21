@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { FaEnvelope, FaLock, FaCaretLeft, FaCar } from "react-icons/fa"
+import { SELLER_LOGIN } from '../../../common/script/url'
 
 class ForgotPassword extends React.Component{
     constructor(props){
@@ -24,13 +25,13 @@ class ForgotPassword extends React.Component{
 
                     <div className="form-link-con">
                         <div className="form-button main-background">
-                            <Link top="/">
+                            <Link to="/">
                                 Submit
                             </Link>
                         </div>
                     </div>
                     <div className="form-link-container">
-                        <Link to="/login"><FaCaretLeft/> Back </Link>                        
+                        <Link to={SELLER_LOGIN}><FaCaretLeft/> Back </Link>                        
                     </div>
 
                 </div>

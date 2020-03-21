@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { FaEnvelope, FaLock } from "react-icons/fa"
+import { SELLER_LOGIN } from '../../../common/script/url'
 
 class RegistratonPage extends React.Component{
     constructor(props){
@@ -32,13 +33,13 @@ class RegistratonPage extends React.Component{
 
                     <div className="form-link-con">
                         <div className="form-button main-background">
-                            <Link top="/">
+                            <Link to="/">
                                 Create Account
                             </Link>
                         </div>
                     </div>
                     <div className="form-link-container">
-                        <Link to="/login">Already have one?</Link>                        
+                        <Link to={SELLER_LOGIN}>Already have one?</Link>                        
                     </div>
 
                 </div>
