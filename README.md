@@ -36,7 +36,7 @@ npm run dev
 ```
 
 ## Contributors
-* **Ankit Kumar** - *External contributor* - [ankitskvmdam](https://github.com/ankitskvmdam)
+* **Ankit Kumar** - [ankitskvmdam](https://github.com/ankitskvmdam)
 
 ## License
 
