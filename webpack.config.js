@@ -64,7 +64,7 @@ const config = {
         }),
         new HtmlWebpackPlugin({
             chunks: ["index"],
-            title : "Vurtuality",
+            title : "Ecommerce React",
             filename : "index.html",
             template : "./public/templates/index.html",
             minify : {
