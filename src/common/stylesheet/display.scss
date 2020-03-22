@@ -1,0 +1,20 @@
+.hidden{
+    display: none
+}
+
+.block {
+    display: block
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-left{
+    @extend .flex;
+    justify-content: flex-end;
+}
+
+.flex-1{
+    flex: 1
+}

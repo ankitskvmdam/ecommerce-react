@@ -5,6 +5,7 @@
 @import "./mixin.scss";
 @import "./fonts.scss";
 @import './base.scss';
-
-// Login Page
-@import "../../components/login_page"
+@import "./display.scss";
+@import "./appbar.scss";
+@import "./spacing.scss";
+@import "./about.scss";

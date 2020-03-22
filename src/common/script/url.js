@@ -1,4 +1,6 @@
-export const HOME = ''
+export const HOME = '/home'
+export const ABOUT = '/about'
+export const CONTACT = '/contact'
 
 // Seller urls
 export const SELLER = '/seller'
