@@ -29,7 +29,7 @@ class Index extends React.Component{
                     </Typography>
                     {this.state.links.map((item, key) => {
                         return(
-                            <div className="item">
+                            <div className="item" key={key}>
                                 <Button>
                                     {item}
                                 </Button>

@@ -1,0 +1,17 @@
+.catergory-card {
+    width: 12rem;
+    height: 8rem;
+    margin: 2rem;
+    display: inline-block;
+}
+
+.product-card {
+    width: 20rem;
+    height: 32rem;
+    margin: 2rem 2rem 0 0;
+    display: inline-block;
+
+    .image {
+        height: 15rem
+    }
+}
