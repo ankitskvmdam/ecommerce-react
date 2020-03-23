@@ -1,13 +1,13 @@
 .hidden{
-    display: none
+    display: none !important;
 }
 
 .block {
-    display: block
+    display: block !important;
 }
 
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .flex-left{
@@ -15,6 +15,25 @@
     justify-content: flex-end;
 }
 
+.flex-justify-center{
+    @extend .flex;
+    justify-content: center;
+}
+
+.flex-align-center{
+    @extend .flex;
+    align-items: center;
+}
+
+.flex-center {
+    @extend .flex-align-center;
+    @extend .flex-justify-center;
+}
+
+.flex-col {
+    @extend .flex;
+    flex-direction: column;
+}
 .flex-1{
     flex: 1
 }

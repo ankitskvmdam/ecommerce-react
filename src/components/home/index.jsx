@@ -1,6 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-
+import ShopByCatergory from './shop-by-catergory'
+import AllProducts from './all-products'
+import { 
+    Container
+} from '@material-ui/core'
 class Index extends React.Component{
     constructor(props){
         super(props)
@@ -8,9 +12,10 @@ class Index extends React.Component{
 
     render(){
         return(
-            <div className=''>
-                This is home page
-            </div>
+            <Container maxWidth='lg'>
+                <ShopByCatergory />
+                <AllProducts />
+            </Container>
         )
     }
 }
