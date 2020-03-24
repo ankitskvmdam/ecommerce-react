@@ -6,9 +6,10 @@ import LoginPage from "./login_page"
 import Home from './home'
 import About from './about'
 import Contact from './contact'
+import Registration from './login_page/registration'
 
 // URL
-import { SELLER_LOGIN, HOME, ABOUT, CONTACT } from '../common/script/url'
+import { SELLER_LOGIN, HOME, ABOUT, CONTACT, SELLER_REGISTRATION } from '../common/script/url'
 
 
 class Pages extends React.Component{
@@ -25,6 +26,7 @@ class Pages extends React.Component{
                     <Route path={CONTACT} component={Contact} />
                     <Route path={HOME} component={Home} />
                     <Route path={ABOUT} component={About} />
+                    <Route path={SELLER_REGISTRATION} component={Registration} />
                 </Switch>
             </div>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link} from 'react-router-dom'
 import { 
     Typography,
     Box,
@@ -7,12 +7,11 @@ import {
     FormControl,
     InputLabel,
     Input,
-    FormHelperText,
     Paper,
     Fab
 } from '@material-ui/core'
 
-import classnames from 'classnames'
+import { SELLER_REGISTRATION } from '../../common/script/url'
 
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
@@ -21,36 +20,11 @@ class Index extends React.Component{
         super(props)
     
         this.state = {
-            disableNext: false,
-            showOTP: false
+            disableNext: true,
         }
 
-        this.submitEmail = this.submitEmail.bind(this)
-        this.submitOTP = this.submitOTP.bind(this)
         this.submit = this.submit.bind(this)
-    }
-
-    submitEmail(){
-        const form = document.getElementById('seller-login-form')
-        const email = form['email'].value
-
-        console.log(email)
-
-        this.setState({
-            showOTP: true,
-            disableNext: false
-        })
-    }
-
-    submitOTP(){
-        const form = document.getElementById('seller-login-form')
-        const email = form['email'].value
-        const otp = form['otp'].value
-        console.log(email, otp)
-
-        this.setState({
-            disableNext: false
-        })
+        this.checkInput = this.checkInput.bind(this)
     }
 
     submit(){
@@ -58,12 +32,30 @@ class Index extends React.Component{
             disableNext: true
         })
 
-        this.state.showOTP ? this.submitOTP() : this.submitEmail()
+        const form  = document.getElementById('seller-login-form')
+        const email = form['email'].value
+        const password = form['password'].value
+
+        console.log(email, password)
     }
+
+    checkInput(){
+        const form  = document.getElementById('seller-login-form')
+        const email = form['email'].value
+        const password = form['password'].value
+
+        if(email.length !=0 && password.length != 0){
+            this.setState({disableNext: false})
+        }
+        else{
+            this.setState({disableNext: true})
+        }
+    }
+
 
     render(){
 
-        const { showOTP, disableNext} = this.state
+        const { disableNext} = this.state
         return(
             <Container maxWidth='lg'>
                 <Box display="flex" justifyContent='center' alignItems='center' mt={2}>
@@ -74,20 +66,25 @@ class Index extends React.Component{
                             </Typography>
                             <FormControl fullWidth={true} margin='normal'>
                                 <InputLabel htmlFor="email" color="secondary">Email address</InputLabel>
-                                <Input id="email" aria-describedby="my-helper-text" color="secondary" fullWidth={true}/>
-                                <FormHelperText id="my-helper-text">We'll sent an OTP to your email.</FormHelperText>
+                                <Input id="email" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
                             </FormControl>
 
-                            <FormControl fullWidth={true} className={classnames({ 'hidden': !showOTP})} margin='normal'>
-                                <InputLabel htmlFor="otp" color="secondary">One Time Password</InputLabel>
-                                <Input id="otp" aria-describedby="my-helper-text" color="secondary" fullWidth={true}/>
-                                <FormHelperText id="my-helper-text">Please check your email for OTP.</FormHelperText>
+                            <FormControl fullWidth={true} margin='normal'>
+                                <InputLabel htmlFor="password" color="secondary">Password</InputLabel>
+                                <Input id="password" color="secondary" fullWidth={true} type='password' required onChange={this.checkInput}/>
                             </FormControl>
 
                             <Box mt={2}>
                                 <Fab color='secondary' arial-label='next' size='medium' disabled={disableNext} onClick={this.submit}>
                                     <MdKeyboardArrowRight className='login-next-icon' />
                                 </Fab>
+                            </Box>
+                            <Box mt={2}>
+                                <Link to={SELLER_REGISTRATION}>
+                                    <Typography color="secondary">
+                                        Create Account
+                                    </Typography>
+                                </Link>
                             </Box>
                         </form>
                     </Paper>
