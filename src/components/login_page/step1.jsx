@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { 
     Box,
@@ -11,6 +12,7 @@ import {
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 
 import { SELLER_REGISTRATION_STEP_2} from '../../common/script/url'
+import { setRegistrationData } from '../../redux/actions/registraionForm'
 
 class Step1 extends React.Component{
     constructor(props){
@@ -29,13 +31,33 @@ class Step1 extends React.Component{
         const form  = document.getElementById('seller-registration-form')
         const email = form['email'].value
         const password = form['password'].value
+        const contact = form['contact'].value
 
         if(email.length !=0 && password.length != 0){
             this.setState({disableNext: false})
+
+            this.props.setRegistrationData({
+                email,
+                password,
+                contact
+            })
+
         }
+
         else{
             this.setState({disableNext: true})
         }
+    }
+
+    componentDidMount(){
+        const { email, password, contact } = this.props.registrationFormData
+        const form  = document.getElementById('seller-registration-form')
+        form['email'].value = email
+        form['password'].value = password
+        form['contact'].value = contact
+
+        if(email.length !=0 && password.length != 0)
+            this.setState({disableNext: false})
     }
 
     preventDefault(e){
@@ -57,6 +79,10 @@ class Step1 extends React.Component{
                         <InputLabel htmlFor="password" color="secondary">Password</InputLabel>
                         <Input id="password" color="secondary" fullWidth={true} type='password' required onChange={this.checkInput}/>
                     </FormControl>
+                    <FormControl fullWidth={true} margin='normal'>
+                        <InputLabel htmlFor="contact" color="secondary">Contact</InputLabel>
+                        <Input id="contact" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                    </FormControl>
                 </Box>
                 <Box mt={2} display="flex" justifyContent='space-around' flex="1" alignItems="flex-end">
                     <Fab color='secondary' arial-label='next' size='medium' disabled={true}>
@@ -74,4 +100,12 @@ class Step1 extends React.Component{
     }
 }
 
-export default withRouter(Step1)
+const mapStateToProps = (store) => ({
+    registrationFormData: store.registrationFormData
+})
+
+const mapActionToState = (dispatch) => ({
+    setRegistrationData: (data)=>dispatch(setRegistrationData(data))
+})
+
+export default withRouter(connect(mapStateToProps, mapActionToState)(Step1))
