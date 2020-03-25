@@ -24,7 +24,7 @@ class AllProducts extends React.Component{
         this._source = axios.CancelToken.source()
         console.log(getProducts)
         console.log('fetching data')
-        axios.get(getProducts, { cancelToken: this._source.token, headers: { 'Access-Control-Allow-Origin': '*'}, withCredentials: false})
+        axios.get(getProducts, { cancelToken: this._source.token})
         .then( data => {
             // console.log(getProducts)
             console.log(data)

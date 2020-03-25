@@ -36,7 +36,7 @@ class Index extends React.Component{
         const form  = document.getElementById('seller-login-form')
         const email = form['email'].value
         const password = form['password'].value
-        this._source = axios.CancelToken.source
+        this._source = axios.CancelToken.source()
 
         console.log(login)
         axios.post(login, {
