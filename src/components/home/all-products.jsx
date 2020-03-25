@@ -28,6 +28,7 @@ class AllProducts extends React.Component{
         })
         .catch(err =>{
             console.log('Error while fetching: ', err)
+            this.setState({products: undefined})
         })
     }
 
@@ -45,7 +46,17 @@ class AllProducts extends React.Component{
 
         const { products } = this.state
 
-        if( products.length == 0){
+        if( products == undefined){
+            return (
+                <Box p={2}>
+                    <Typography variant="h4" className="flex-center">
+                        All Products
+                    </Typography>
+                    Unable to load products. Please try again
+                </Box>
+            )
+        }
+        else if( products.length == 0){
             return (
                 <Box p={2}>
                     <Typography variant="h4" className="flex-center">

@@ -35,20 +35,24 @@ class Seller extends React.Component{
     fetchProducts(){
         axios.get(getProducts, { cancelToken: this._source.token})
         .then( data =>{
-            let d = data.data.data
+            let d = data && data.data && data.data.data || undefined
             let user = localStorage.getItem('USER')
             let filterdata = []
             
             let i
 
-            for(i=0; i < d.length; i++){
-                if(d[i].user == user)
-                    filterdata.push(d[i])
-            }
-            this.setState({allProducts: filterdata})
+            if(d != undefined ){
+                
+                for(i=0; i < d.length; i++){
+                    if(d[i].user == user)
+                        filterdata.push(d[i])
+                }
 
-            if(filterdata.length == 0 ){
-                this.setState({create: true})
+                this.setState({allProducts: filterdata})
+
+                if(filterdata.length == 0 ){
+                    this.setState({create: true})
+                }
             }
         })
     }
