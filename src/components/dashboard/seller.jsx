@@ -79,16 +79,20 @@ class Seller extends React.Component{
         return(
             <Container maxWidth='lg'>
                 <Box p={2}>
-                    <Typography variant="h2">
-                       Hi, {name}!
-                    </Typography>
                     <Typography variant="h4">
                         Seller Dashboard
                     </Typography>
 
-                    <Button color="secondary" onClick={this.logout}>
-                        Logout
-                    </Button>
+                    <Typography variant="h5" style={{display: "flex", alignItems: "flex-end"}}>
+                        <img src={localStorage.getItem('AVATAR')} className="admin-user-image"/> &nbsp;
+                        Hi, {name}! 
+                    </Typography>
+
+                    <Box display="flex" justifyContent="flex-end">
+                        <Button color="secondary" onClick={this.logout}>
+                            Logout
+                        </Button>
+                    </Box>
 
                     <Paper elevation={2}>
                         <Box p={2}>

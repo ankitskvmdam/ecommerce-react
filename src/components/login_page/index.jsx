@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import { SELLER_REGISTRATION, SELLER, ADMIN } from '../../common/script/url'
-import { login } from '../../common/script/api'
+import { login, base } from '../../common/script/api'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import axios from 'axios'
 import qs from 'querystring'
@@ -61,7 +61,6 @@ class Index extends React.Component{
             cancelToken: this._source.token, 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin': '*'
             }, 
             // withCredentials: true
         })
@@ -69,6 +68,7 @@ class Index extends React.Component{
             localStorage.setItem("LOGIN", "true")
             localStorage.setItem('USER', data.data.data._id)
             localStorage.setItem("NAME", data.data.data.name)
+            localStorage.setItem('AVATAR', base + data.data.data.avatar)
             if(data.data && data.data.type && data.data.type == 'admin'){
                 localStorage.setItem("TYPE", "ADMIN")
                 this.props.history.push(ADMIN)
