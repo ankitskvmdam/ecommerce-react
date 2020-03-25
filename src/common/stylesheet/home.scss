@@ -14,7 +14,9 @@
     position: relative;
 
     .image {
-        height: 15rem
+        height: 15rem;
+        width: 100%;
+        object-fit: cover;
     }
 
     .card-label{

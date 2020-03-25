@@ -39,16 +39,27 @@ class Index extends React.Component{
         this._source = axios.CancelToken.source()
 
         console.log(login)
-        axios.post(login, {
-            email,
-            password
-        }, {    
-            cancelToken: this._source.token, 
-            withCredentials: true
-        })
-        .then(data=>{
-            console.log(data)
-        })
+        // axios.post(login, {
+        //     email,
+        //     password
+        // }, {    
+        //     cancelToken: this._source.token, 
+        //     withCredentials: false
+        // })
+        // .then(data=>{
+        //     console.log(data)
+        // })
+
+        fetch(login, {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then(dat=>console.log(dat))
     }
 
     checkInput(){

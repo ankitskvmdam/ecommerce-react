@@ -2,12 +2,13 @@
 
 //End third party scss
 
-@import "./mixin.scss";
-@import "./fonts.scss";
-@import './base.scss';
-@import "./display.scss";
-@import "./appbar.scss";
-@import "./spacing.scss";
-@import "./about.scss";
-@import "./sell-with-us.scss";
+@import "./mixin";
+@import "./fonts";
+@import './base';
+@import "./display";
+@import "./appbar";
+@import "./spacing";
+@import "./about";
+@import "./sell-with-us";
 @import "./home";
+@import "./admin"

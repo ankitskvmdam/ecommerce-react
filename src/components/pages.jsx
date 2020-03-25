@@ -7,9 +7,11 @@ import Home from './home'
 import About from './about'
 import Contact from './contact'
 import Registration from './login_page/registration'
+import Admin from './dashboard/admin'
+import Seller from './dashboard/seller'
 
 // URL
-import { SELLER_LOGIN, HOME, ABOUT, CONTACT, SELLER_REGISTRATION } from '../common/script/url'
+import { SELLER_LOGIN, HOME, ABOUT, CONTACT, SELLER_REGISTRATION, ADMIN, SELLER } from '../common/script/url'
 
 
 class Pages extends React.Component{
@@ -27,6 +29,8 @@ class Pages extends React.Component{
                     <Route path={HOME} component={Home} />
                     <Route path={ABOUT} component={About} />
                     <Route path={SELLER_REGISTRATION} component={Registration} />
+                    <Route path={ADMIN} component={Admin} exact={true}/>
+                    <Route path={SELLER} component={Seller} exact={true}/>
                 </Switch>
             </div>
         )

@@ -22,13 +22,9 @@ class AllProducts extends React.Component{
 
     fetchProducts(){
         this._source = axios.CancelToken.source()
-        console.log(getProducts)
-        console.log('fetching data')
         axios.get(getProducts, { cancelToken: this._source.token})
         .then( data => {
-            // console.log(getProducts)
-            console.log(data)
-            // this.setState({products: data.data})
+            this.setState({products: data.data.data})
         })
         .catch(err =>{
             console.log('Error while fetching: ', err)
@@ -70,7 +66,7 @@ class AllProducts extends React.Component{
                         return <AllProductCard 
                                     key={key}
                                     tag={item.tag}
-                                    imageLink={item.avatar}
+                                    imageLink={base+item.avatar}
                                     title={item.title}
                                     description={item.description}
                                     imageTitle={item.title}
