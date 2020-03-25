@@ -9,7 +9,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    Button
 } from '@material-ui/core'
 
 import axios from 'axios'
@@ -26,6 +27,7 @@ class Admin extends React.Component{
 
         this.fetchUsers = this.fetchUsers.bind(this)
         this.fetchProducts = this.fetchProducts.bind(this)
+        this.logout = this.logout.bind(this)
     }
 
     fetchProducts(){
@@ -42,10 +44,23 @@ class Admin extends React.Component{
         })
     }
 
+    logout(){
+        localStorage.removeItem('LOGIN')
+        localStorage.removeItem('TYPE')
+        this.props.history.push('/home')
+    }
+
     componentDidMount(){
         this._source = axios.CancelToken.source()
-        this.fetchProducts()
-        this.fetchUsers()
+        
+        if(localStorage.getItem('LOGIN') != 'true' || localStorage.getItem('TYPE') != 'ADMIN')
+            this.props.history.push('/seller/login')
+
+        else{
+            this.fetchProducts()
+            this.fetchUsers()
+
+        }
     }
 
     componentWillUnmount(){
@@ -61,6 +76,9 @@ class Admin extends React.Component{
                         Admin Dashboard
                     </Typography>
 
+                    <Button color="secondary" onClick={this.logout}>
+                        Logout
+                    </Button>
                     <Paper elevation={2}>
                         <Box p={2}>
                             <Typography variant="h4">

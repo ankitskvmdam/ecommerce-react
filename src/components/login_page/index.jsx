@@ -53,8 +53,15 @@ class Index extends React.Component{
             }
         })
         .then(data=>{
-            this.setState({disableNext: false})
-            this.props.history.push(ADMIN)
+            localStorage.setItem("LOGIN", "true")
+            if(data.data && data.data.type && data.data.type == 'admin'){
+                localStorage.setItem("TYPE", "ADMIN")
+                this.props.history.push(ADMIN)
+            }
+            else{
+                localStorage.setItem("TYPE", "SELLER")
+                this.props.history.push(SELLER)
+            }
         })
         .catch(err =>{
             console.log(err)
@@ -77,6 +84,12 @@ class Index extends React.Component{
 
     componentDidMount(){
         this._source=''
+        if(localStorage.getItem('LOGIN') == 'true'){
+            if(localStorage.getItem('TYPE') == 'ADMIN')
+                this.props.history.push(ADMIN)
+            else
+                this.props.history.push(SELLER)
+        }
     }
 
     componentWillUnmount(){

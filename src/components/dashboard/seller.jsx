@@ -9,7 +9,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    Button
 } from '@material-ui/core'
 
 import axios from 'axios'
@@ -24,6 +25,7 @@ class Seller extends React.Component{
         }
 
         this.fetchProducts = this.fetchProducts.bind(this)
+        this.logout = this.logout.bind(this)
     }
 
     fetchProducts(){
@@ -33,8 +35,17 @@ class Seller extends React.Component{
         })
     }
 
+    logout(){
+        localStorage.removeItem('LOGIN')
+        localStorage.removeItem('TYPE')
+        this.props.history.push('/home')
+    }
+
     componentDidMount(){
         this._source = axios.CancelToken.source()
+        
+        if(localStorage.getItem('LOGIN') != 'true')
+            this.props.history.push('/seller/login')
         this.fetchProducts()
     }
 
@@ -50,6 +61,10 @@ class Seller extends React.Component{
                     <Typography variant="h3">
                         Seller Dashboard
                     </Typography>
+
+                    <Button color="secondary" onClick={this.logout}>
+                        Logout
+                    </Button>
 
                     <Paper elevation={2}>
                         <Box p={2}>

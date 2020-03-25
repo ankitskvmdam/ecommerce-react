@@ -13,7 +13,7 @@ class Index extends React.Component{
     render(){
         return(
             <Container maxWidth='lg'>
-                <ShopByCatergory />
+                {/* <ShopByCatergory /> */}
                 <AllProducts />
             </Container>
         )

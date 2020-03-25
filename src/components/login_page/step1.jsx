@@ -33,14 +33,16 @@ class Step1 extends React.Component{
         const email = form['email'].value
         const contact = form['contact'].value
         const name = form['name'].value
-
-        if(email.length !=0 && name.length != 0 && contact.length != 0){
+        const files = form['avatar']
+        
+        if(email.length !=0 && name.length != 0 && contact.length != 0 && files.files[0]){
             this.setState({disableNext: false})
 
             this.props.setRegistrationData({
                 email,
                 contact,
-                name
+                name,
+                avatar: files.files[0]
             })
 
         }
@@ -51,13 +53,13 @@ class Step1 extends React.Component{
     }
 
     componentDidMount(){
-        const { email, contact, name } = this.props.registrationFormData
+        const { email, contact, name, avatar } = this.props.registrationFormData
         const form  = document.getElementById('seller-registration-form')
         form['name'].value = name
         form['email'].value = email
         form['contact'].value = contact
 
-        if(name.length != 0 && email.length !=0 && contact.length != 0)
+        if(name.length != 0 && email.length !=0 && contact.length != 0 && avatar)
             this.setState({disableNext: false})
     }
 

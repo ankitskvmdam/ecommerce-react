@@ -31,10 +31,20 @@ class Step3 extends React.Component{
 
     checkInput(){
         const form  = document.getElementById('seller-registration-form')
-        const email = form['email'].value
-        const password = form['password'].value
+        const aadhar = form['aadhar'].value
+        const pan = form['pan'].value
+        const aadharImage = form['aadharImage']
+        const panImage = form['panImage']
 
-        if(email.length !=0 && password.length != 0){
+
+        if(aadhar.length !=0 && pan.length != 0 && aadharImage.files[0] && panImage.files[0]){
+            this.props.setRegistrationData({
+                aadhar,
+                pan,
+                panImage: panImage.files[0],
+                aadharImage: aadharImage.files[0]
+            })
+
             this.setState({disableNext: false})
         }
         else{
@@ -46,6 +56,17 @@ class Step3 extends React.Component{
         if(this.state.disableNext){
             e.preventDefault()
         }
+    }
+
+    componentDidMount(){
+        const { aadhar, pan, aadharImage, panImage } = this.props.registrationFormData
+        const form  = document.getElementById('seller-registration-form')
+
+        form['aadhar'].value = aadhar
+        form['pan'].value = pan
+
+        if(aadhar.length != 0 && pan.length != 0 && aadharImage && panImage)
+            this.setState({disableNext: false})
     }
 
     render(){
