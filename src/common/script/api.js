@@ -8,5 +8,6 @@ export const getProducts = baseEndpoint + '/product/getProduct'
 // User
 export const login = base + '/user/create-session'
 export const register = base + '/user/create'
-
+export const createProduct = base + '/api/v1/product/product-create'
 export const allUsers = baseEndpoint + '/user/getUsers'
+

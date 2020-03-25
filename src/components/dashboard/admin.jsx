@@ -47,6 +47,7 @@ class Admin extends React.Component{
     logout(){
         localStorage.removeItem('LOGIN')
         localStorage.removeItem('TYPE')
+        localStorage.removeItem('USER')
         this.props.history.push('/home')
     }
 

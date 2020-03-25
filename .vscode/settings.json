@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.tmpl": "erb",
-        "random": "cpp",
-        "ratio": "cpp"
-    }
-}

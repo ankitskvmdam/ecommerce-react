@@ -14,14 +14,17 @@ import {
 } from '@material-ui/core'
 
 import axios from 'axios'
-import { getProducts, allUsers, base } from '../../common/script/api'
+import { getProducts, base } from '../../common/script/api'
+import classnames from 'classnames'
+import PostProduct from './post-product'
 
 class Seller extends React.Component{
     constructor(props){
         super(props)
 
         this.state = {
-            allProducts: []
+            allProducts: [],
+            create: false
         }
 
         this.fetchProducts = this.fetchProducts.bind(this)
@@ -31,19 +34,34 @@ class Seller extends React.Component{
     fetchProducts(){
         axios.get(getProducts, { cancelToken: this._source.token})
         .then( data =>{
-            this.setState({allProducts: data.data.data})
+            let d = data.data.data
+            let user = localStorage.getItem('USER')
+            let filterdata = []
+            
+            let i
+
+            for(i=0; i < d.length; i++){
+                if(d[i].user == user)
+                    filterdata.push(d[i])
+            }
+            this.setState({allProducts: filterdata})
+
+            if(filterdata.length ==0 ){
+                this.setState({create: true})
+            }
         })
     }
 
     logout(){
         localStorage.removeItem('LOGIN')
         localStorage.removeItem('TYPE')
+        localStorage.removeItem('USER')
         this.props.history.push('/home')
     }
 
     componentDidMount(){
         this._source = axios.CancelToken.source()
-        
+
         if(localStorage.getItem('LOGIN') != 'true')
             this.props.history.push('/seller/login')
         this.fetchProducts()
@@ -83,6 +101,10 @@ class Seller extends React.Component{
                                     )
                                 })}
                             </List>
+
+                            <Box className={classnames({"hidden": !this.state.create})}>
+                                <PostProduct />
+                            </Box>
                         </Box>
                     </Paper>
                 </Box>

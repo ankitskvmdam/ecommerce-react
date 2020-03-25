@@ -119,7 +119,7 @@ class Step4 extends React.Component{
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
-            withCredentials: false
+            withCredentials: true
         })
         .then(data=>{
             if(data.status == 200){

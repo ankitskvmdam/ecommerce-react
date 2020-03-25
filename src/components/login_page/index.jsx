@@ -47,13 +47,14 @@ class Index extends React.Component{
 
         axios.post(login, qs.stringify(body), {    
             cancelToken: this._source.token, 
-            withCredentials: false,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            }, 
+            withCredentials: true
         })
         .then(data=>{
             localStorage.setItem("LOGIN", "true")
+            localStorage.setItem('USER', data.data.data._id)
             if(data.data && data.data.type && data.data.type == 'admin'){
                 localStorage.setItem("TYPE", "ADMIN")
                 this.props.history.push(ADMIN)
