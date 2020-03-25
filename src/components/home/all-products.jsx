@@ -22,7 +22,7 @@ class AllProducts extends React.Component{
 
     fetchProducts(){
         this._source = axios.CancelToken.source()
-        axios.get(getProducts, { cancelToken: this._source.token})
+        axios.get(getProducts, { cancelToken: this._source.token })
         .then( data => {
             this.setState({products: data.data.data})
         })

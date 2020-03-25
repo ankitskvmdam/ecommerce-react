@@ -64,13 +64,13 @@ class PostProduct extends React.Component{
         body.append('price', price)
         body.append('description', description)
         body.append('image', file)
+        body.append('user_id', localStorage.getItem('USER'))
 
         axios.post(createProduct, body, {
             cancelToken: this._source.token,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            withCredentials: true
+                'Content-Type': 'multipart/form-data',
+            }
         })
         .then(data=>{
             if(data.status == 200){

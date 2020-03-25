@@ -118,8 +118,7 @@ class Step4 extends React.Component{
             cancelToken: this._source.token,
             headers: {
                 'Content-Type': 'multipart/form-data'
-            },
-            withCredentials: true
+            }
         })
         .then(data=>{
             if(data.status == 200){

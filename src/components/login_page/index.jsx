@@ -8,15 +8,19 @@ import {
     InputLabel,
     Input,
     Paper,
-    Fab
+    Fab,
+    Snackbar
 } from '@material-ui/core'
-
+import MuiAlert from '@material-ui/lab/Alert';
 import { SELLER_REGISTRATION, SELLER, ADMIN } from '../../common/script/url'
 import { login } from '../../common/script/api'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import axios from 'axios'
 import qs from 'querystring'
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class Index extends React.Component{
     constructor(props){
@@ -24,11 +28,19 @@ class Index extends React.Component{
     
         this.state = {
             disableNext: true,
+            open: false,
+            msg: 'Error!',
+
         }
 
         this.submit = this.submit.bind(this)
         this.checkInput = this.checkInput.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
+
+    handleClose(){
+        this.setState({open: false})
+    };
 
     submit(){
         this.setState({
@@ -48,13 +60,15 @@ class Index extends React.Component{
         axios.post(login, qs.stringify(body), {    
             cancelToken: this._source.token, 
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*'
             }, 
-            withCredentials: true
+            // withCredentials: true
         })
         .then(data=>{
             localStorage.setItem("LOGIN", "true")
             localStorage.setItem('USER', data.data.data._id)
+            localStorage.setItem("NAME", data.data.data.name)
             if(data.data && data.data.type && data.data.type == 'admin'){
                 localStorage.setItem("TYPE", "ADMIN")
                 this.props.history.push(ADMIN)
@@ -66,7 +80,8 @@ class Index extends React.Component{
         })
         .catch(err =>{
             console.log(err)
-            this.setState({disableNext: false})
+            this.setState({disableNext: false, open: true})
+
         })
     }
 
@@ -100,7 +115,7 @@ class Index extends React.Component{
 
     render(){
 
-        const { disableNext} = this.state
+        const { disableNext, open, msg } = this.state
         return(
             <Container maxWidth='lg'>
                 <Box display="flex" justifyContent='center' alignItems='center' mt={2}>
@@ -133,6 +148,11 @@ class Index extends React.Component{
                             </Box>
                         </form>
                     </Paper>
+                    <Snackbar open={open} autoHideDuration={10000} onClose={this.handleClose}>
+                        <Alert onClose={this.handleClose} severity='error'>
+                            {msg}
+                        </Alert>
+                    </Snackbar>
                 </Box>
             </Container>
         )

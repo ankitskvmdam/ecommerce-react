@@ -24,7 +24,8 @@ class Seller extends React.Component{
 
         this.state = {
             allProducts: [],
-            create: false
+            create: false,
+            name: localStorage.getItem('NAME')
         }
 
         this.fetchProducts = this.fetchProducts.bind(this)
@@ -46,7 +47,7 @@ class Seller extends React.Component{
             }
             this.setState({allProducts: filterdata})
 
-            if(filterdata.length ==0 ){
+            if(filterdata.length == 0 ){
                 this.setState({create: true})
             }
         })
@@ -73,10 +74,15 @@ class Seller extends React.Component{
     }
 
     render(){
+
+        const name = this.state.name || ''
         return(
             <Container maxWidth='lg'>
                 <Box p={2}>
-                    <Typography variant="h3">
+                    <Typography variant="h2">
+                       Hi, {name}!
+                    </Typography>
+                    <Typography variant="h4">
                         Seller Dashboard
                     </Typography>
 
