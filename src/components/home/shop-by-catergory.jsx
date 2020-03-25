@@ -21,7 +21,7 @@ class ShopByCatergory extends React.Component{
                 <Typography variant="h4" className="flex-center">
                     Featured Catergories
                 </Typography>
-                <Box pt={2} pb={2} Display="flex" justifyContent='space-around' flexWrap='wrap'>
+                <Box pt={2} pb={2} display="flex" justifyContent='space-around' flexWrap='wrap'>
                     {this.state.catergory.map((item, key)=>{
                         return <CatergoryCard title={item} key={key} className='catergory-card'/>
                     })}

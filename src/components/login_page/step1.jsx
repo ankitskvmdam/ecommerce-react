@@ -6,7 +6,8 @@ import {
     FormControl,
     InputLabel,
     Input,
-    Fab
+    Fab,
+    Button
 } from '@material-ui/core'
 
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
@@ -30,16 +31,14 @@ class Step1 extends React.Component{
     checkInput(){
         const form  = document.getElementById('seller-registration-form')
         const email = form['email'].value
-        const password = form['password'].value
         const contact = form['contact'].value
         const name = form['name'].value
 
-        if(email.length !=0 && password.length != 0 && name.length != 0 && contact.length != 0){
+        if(email.length !=0 && name.length != 0 && contact.length != 0){
             this.setState({disableNext: false})
 
             this.props.setRegistrationData({
                 email,
-                password,
                 contact,
                 name
             })
@@ -52,14 +51,13 @@ class Step1 extends React.Component{
     }
 
     componentDidMount(){
-        const { email, password, contact, name } = this.props.registrationFormData
+        const { email, contact, name } = this.props.registrationFormData
         const form  = document.getElementById('seller-registration-form')
         form['name'].value = name
         form['email'].value = email
-        form['password'].value = password
         form['contact'].value = contact
 
-        if(name.length != 0 && email.length !=0 && password.length != 0 && contact.length != 0)
+        if(name.length != 0 && email.length !=0 && contact.length != 0)
             this.setState({disableNext: false})
     }
 
@@ -77,16 +75,17 @@ class Step1 extends React.Component{
                         <InputLabel htmlFor="name" color="secondary">Full Name</InputLabel>
                         <Input id="name" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
                     </FormControl>
-
+                    <FormControl fullWidth={true} margin='normal'>
+                        <Button variant="outlined">
+                            Upload Your Photo &nbsp;&nbsp;&nbsp;
+                            <input type="file" accept="image/*" id="avatar" onChange={this.checkInput} />
+                        </Button>
+                    </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="email" color="secondary">Email address</InputLabel>
                         <Input id="email" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
                     </FormControl>
 
-                    <FormControl fullWidth={true} margin='normal'>
-                        <InputLabel htmlFor="password" color="secondary">Password</InputLabel>
-                        <Input id="password" color="secondary" fullWidth={true} type='password' required onChange={this.checkInput}/>
-                    </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="contact" color="secondary">Contact</InputLabel>
                         <Input id="contact" color="secondary" fullWidth={true} required onChange={this.checkInput}/>

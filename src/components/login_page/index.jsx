@@ -12,8 +12,9 @@ import {
 } from '@material-ui/core'
 
 import { SELLER_REGISTRATION } from '../../common/script/url'
-
+import { login } from '../../common/script/api'
 import { MdKeyboardArrowRight } from 'react-icons/md'
+import axios from 'axios'
 
 class Index extends React.Component{
     constructor(props){
@@ -35,8 +36,19 @@ class Index extends React.Component{
         const form  = document.getElementById('seller-login-form')
         const email = form['email'].value
         const password = form['password'].value
+        this._source = axios.CancelToken.source
 
-        console.log(email, password)
+        console.log(login)
+        axios.post(login, {
+            email,
+            password
+        }, {    
+            cancelToken: this._source.token, 
+            withCredentials: true
+        })
+        .then(data=>{
+            console.log(data)
+        })
     }
 
     checkInput(){
@@ -52,6 +64,14 @@ class Index extends React.Component{
         }
     }
 
+    componentDidMount(){
+        this._source=''
+    }
+
+    componentWillUnmount(){
+        if(this._source != '')
+            this._source.cancel()
+    }
 
     render(){
 

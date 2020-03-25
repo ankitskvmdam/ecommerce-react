@@ -7,7 +7,8 @@ import {
     Typography,
     Button,
     CardActions,
-    Box
+    Box,
+    Chip
 } from '@material-ui/core'
 
 class CircleCard extends React.Component{
@@ -16,16 +17,17 @@ class CircleCard extends React.Component{
     }
 
     render(){
-        const { title, buttonTitle, cardClass, mediaClass, imageLink, imageTitle, description, price } = this.props
+        const { title, buttonTitle, cardClass, mediaClass, imageLink, imageTitle, description, price, tag } = this.props
         return(
             <Card className={cardClass}>
-                <Box display="flex" justifyContent='center' pt={1}>
+                <Box display="flex" justifyContent='center'>
                     <img className={mediaClass}
                         src = {imageLink}
                         title = {imageTitle}
                     />
+                    <Chip label={tag} color="primary" size="small" className="card-label" />
                 </Box>
-                <CardContent>
+                <CardContent style={{flex: 1}}>
                     <Typography variant="h5" gutterBottom>
                         {title}
                     </Typography>
@@ -56,6 +58,7 @@ CircleCard.defaultProps = {
     imageLink: '',
     imageTitle: '',
     description: '',
-    price: ''
+    price: '',
+    tag: ''
 }
 export default CircleCard

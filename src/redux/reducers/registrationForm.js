@@ -2,7 +2,7 @@ import { REGISTRATION_DATA_UPDATE } from '../constants/registrationForm'
 
 const initialState = {
     email: '',
-    password: '',
+    avatar: '',
     contact: '',
     alternativeContact: '',
     name: '',
@@ -13,13 +13,13 @@ const initialState = {
     dob: '',
     pan: '',
     aadhar: '',
-    avatar: '',
     aadharImage: '',
     panImage: '',
     organizationName: '',
     organizationScope: '',
     organizationNature: '',
     gstNo: '',
+    designation: ''
 
 }
 

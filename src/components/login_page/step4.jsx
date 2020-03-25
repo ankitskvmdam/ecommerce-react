@@ -8,8 +8,6 @@ import {
     InputLabel,
     Input,
     Fab,
-    TextField,
-    Button,
 } from '@material-ui/core'
 
 import { MdKeyboardArrowLeft, MdCheck } from 'react-icons/md'
@@ -35,8 +33,9 @@ class Step4 extends React.Component{
         const organizationScope = form['organizationScope'].value
         const organizationNature = form['organizationNature'].value
         const gstNo = form['gstNo'].value
+        const designation = form['designation'].value
 
-        if(gstNo.length != 0 && organizationName.length != 0 && organizationScope.length != 0 && organizationNature.length != 0){
+        if(gstNo.length != 0 && organizationName.length != 0 && organizationScope.length != 0 && organizationNature.length != 0 && designation.length != 0){
             this.setState({disableNext: false})
         }
         else{
@@ -51,14 +50,15 @@ class Step4 extends React.Component{
     }
 
     componentDidMount(){
-        const {  organizationName, organizationScope, organizationNature, gstNo } = this.props.registrationFormData
+        const {  organizationName, organizationScope, organizationNature, gstNo, designation } = this.props.registrationFormData
         const form  = document.getElementById('seller-registration-form')
         form['organizationName'].value = organizationName
         form['organizationScope'].value = organizationScope
         form['organizationNature'].value = organizationNature
         form['gstNo'].value = gstNo
+        form['designation'].value = designation
 
-        if(gstNo.length != 0 && organizationName.length != 0 && organizationScope.length != 0 && organizationNature.length != 0)
+        if(gstNo.length != 0 && organizationName.length != 0 && organizationScope.length != 0 && organizationNature.length != 0 && designation.length != 0)
             this.setState({disableNext: false})
     }
 
@@ -67,19 +67,23 @@ class Step4 extends React.Component{
             <Box display="flex" flexDirection="column" flex="1">
                 <Box>
 
-                    <FormControl fullWidth={true} margin='normal'>
+                    <FormControl fullWidth={true} margin='dense'>
+                        <InputLabel htmlFor="designation" color="secondary">Designation in the Organization</InputLabel>
+                        <Input id="designation" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
+                    </FormControl>
+                    <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="organizationName" color="secondary">Organization Name</InputLabel>
                         <Input id="organizationName" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>
-                    <FormControl fullWidth={true} margin='normal'>
+                    <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="organizationNature" color="secondary">Organization Nature</InputLabel>
                         <Input id="organizationNature" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>
-                    <FormControl fullWidth={true} margin='normal'>
+                    <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="organizationScope" color="secondary">Organization Scope</InputLabel>
                         <Input id="organizationScope" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>
-                    <FormControl fullWidth={true} margin='normal'>
+                    <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="gstNo" color="secondary">GST No</InputLabel>
                         <Input id="gstNo" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>

@@ -5,66 +5,61 @@ import {
 } from '@material-ui/core'
 
 import AllProductCard from './all-product-card'
+import axios from 'axios'
+
+import { getProducts, base } from '../../common/script/api'
 
 class AllProducts extends React.Component{
     constructor(props){
         super(props)
 
         this.state = {
-            products: [
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-                {
-                    image: 'https://rukminim1.flixcart.com/image/416/416/jfsknm80/tablet/u/m/z/apple-mr7f2hn-a-original-imaf46kh3wvufeme.jpeg',
-                    title: 'Ipad Pro (7th Gen) 10.2',
-                    price: 'Rs. 29,9000',
-                    description: 'Ipad Pro (7th Gen) 10.2, 32 GB, Wifi Only, Processor: A10 Fusion Chip with 64-bit Architecture with Embedded M10 Coprocessor, 24.64 cm (9.7 inch) Quad HD Display'
-                },
-            ]
+            products: []
         }
+
+        this.fetchProducts = this.fetchProducts.bind(this)
+    }
+
+    fetchProducts(){
+        this._source = axios.CancelToken.source()
+        console.log(getProducts)
+        console.log('fetching data')
+        axios.get(getProducts, { cancelToken: this._source.token, headers: { 'Access-Control-Allow-Origin': '*'}, withCredentials: false})
+        .then( data => {
+            // console.log(getProducts)
+            console.log(data)
+            // this.setState({products: data.data})
+        })
+        .catch(err =>{
+            console.log('Error while fetching: ', err)
+        })
+    }
+
+    componentDidMount(){
+        this._source = ''
+        this.fetchProducts()
+    }
+
+    componentWillUnmount(){
+        if(this._source != '')
+            this._source.cancel()
     }
 
     render(){
+
+        const { products } = this.state
+
+        if( products.length == 0){
+            return (
+                <Box p={2}>
+                    <Typography variant="h4" className="flex-center">
+                        All Products
+                    </Typography>
+                    Loading...
+                </Box>
+            )
+        }
+        
         return(
             <Box p={2}>
                 <Typography variant="h4" className="flex-center">
@@ -74,7 +69,8 @@ class AllProducts extends React.Component{
                     {this.state.products.map((item, key)=>{
                         return <AllProductCard 
                                     key={key}
-                                    imageLink={item.image}
+                                    tag={item.tag}
+                                    imageLink={item.avatar}
                                     title={item.title}
                                     description={item.description}
                                     imageTitle={item.title}

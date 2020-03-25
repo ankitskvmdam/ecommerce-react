@@ -9,9 +9,17 @@
     width: 20rem;
     height: 32rem;
     margin: 2rem 2rem 0 0;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
     .image {
         height: 15rem
+    }
+
+    .card-label{
+        position: absolute;
+        top: 1rem;
+        left: 0.5rem;
     }
 }
