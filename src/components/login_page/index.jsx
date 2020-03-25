@@ -11,10 +11,12 @@ import {
     Fab
 } from '@material-ui/core'
 
-import { SELLER_REGISTRATION } from '../../common/script/url'
+import { SELLER_REGISTRATION, SELLER, ADMIN } from '../../common/script/url'
 import { login } from '../../common/script/api'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import axios from 'axios'
+import qs from 'querystring'
+
 
 class Index extends React.Component{
     constructor(props){
@@ -38,28 +40,26 @@ class Index extends React.Component{
         const password = form['password'].value
         this._source = axios.CancelToken.source()
 
-        console.log(login)
-        // axios.post(login, {
-        //     email,
-        //     password
-        // }, {    
-        //     cancelToken: this._source.token, 
-        //     withCredentials: false
-        // })
-        // .then(data=>{
-        //     console.log(data)
-        // })
+        const body = {
+            email,
+            password
+        }
 
-        fetch(login, {
-            method: 'POST',
-            header: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        }).then(dat=>console.log(dat))
+        axios.post(login, qs.stringify(body), {    
+            cancelToken: this._source.token, 
+            withCredentials: false,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(data=>{
+            this.setState({disableNext: false})
+            this.props.history.push(ADMIN)
+        })
+        .catch(err =>{
+            console.log(err)
+            this.setState({disableNext: false})
+        })
     }
 
     checkInput(){
