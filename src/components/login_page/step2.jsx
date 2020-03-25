@@ -15,7 +15,7 @@ import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 import { SELLER_REGISTRATION_STEP_3, SELLER_REGISTRATION_STEP_1 } from '../../common/script/url'
 import { setRegistrationData } from '../../redux/actions/registraionForm'
 
-class Step1 extends React.Component{
+class Step2 extends React.Component{
     constructor(props){
         super(props)
 
@@ -30,17 +30,18 @@ class Step1 extends React.Component{
 
     checkInput(){
         const form  = document.getElementById('seller-registration-form')
-        const name = form['name'].value
         const s_d_w = form['s_d_w'].value
         const permanent = form['permanent'].value
         const present = form['present'].value
-        if(name.length != 0 && present.length != 0 && permanent.length != 0 && s_d_w.length != 0){
+        const alternativeContact = form['alternativeContact'].value
+
+        if(present.length != 0 && permanent.length != 0 && s_d_w.length != 0 && alternativeContact != 0){
             this.setState({disableNext: false})
             this.props.setRegistrationData({
-                name,
                 s_d_w,
                 permanent,
-                present
+                present,
+                alternativeContact
             })
         }
         else{
@@ -55,14 +56,14 @@ class Step1 extends React.Component{
     }
 
     componentDidMount(){
-        const { name, s_d_w, permanent, present } = this.props.registrationFormData
+        const {  s_d_w, permanent, present, alternativeContact } = this.props.registrationFormData
         const form  = document.getElementById('seller-registration-form')
-        form['name'].value = name
         form['s_d_w'].value = s_d_w
         form['permanent'].value = permanent
         form['present'].value = present
+        form['alternativeContact'].value = alternativeContact
 
-        if(name.length != 0 && present.length != 0 && permanent.length != 0 && s_d_w.length != 0)
+        if(present.length != 0 && permanent.length != 0 && s_d_w.length != 0 && alternativeContact != 0)
             this.setState({disableNext: false})
     }
 
@@ -71,9 +72,10 @@ class Step1 extends React.Component{
             <Box display="flex" flexDirection="column" flex="1">
                 <Box>
                     <FormControl fullWidth={true} margin='normal'>
-                        <InputLabel htmlFor="name" color="secondary">Full Name</InputLabel>
-                        <Input id="name" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                        <InputLabel htmlFor="alternativeContact" color="secondary">Alternate Contact Number</InputLabel>
+                        <Input id="alternativeContact" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
                     </FormControl>
+
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="s_d_w" color="secondary">S/o, D/o, W/o</InputLabel>
                         <Input id="s_d_w" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
@@ -113,4 +115,4 @@ const mapActionToState = (dispatch) => ({
     setRegistrationData: (data)=>dispatch(setRegistrationData(data))
 })
 
-export default withRouter(connect(mapStateToProps, mapActionToState)(Step1))
+export default withRouter(connect(mapStateToProps, mapActionToState)(Step2))

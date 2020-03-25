@@ -4,7 +4,7 @@ const initialState = {
     email: '',
     password: '',
     contact: '',
-    alternative_contact: '',
+    alternativeContact: '',
     name: '',
     s_d_w: '',
     permanent: '',
@@ -16,6 +16,11 @@ const initialState = {
     avatar: '',
     aadharImage: '',
     panImage: '',
+    organizationName: '',
+    organizationScope: '',
+    organizationNature: '',
+    gstNo: '',
+
 }
 
 const registrationFormData = (state = initialState, action) => {

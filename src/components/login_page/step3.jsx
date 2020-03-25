@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import { setRegistrationData } from '../../redux/actions/registraionForm'
 import { 
     Box,
     FormControl,
@@ -12,9 +14,9 @@ import {
 
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 
-import { SELLER_REGISTRATION_STEP_2} from '../../common/script/url'
+import { SELLER_REGISTRATION_STEP_2, SELLER_REGISTRATION_STEP_4 } from '../../common/script/url'
 
-class Step1 extends React.Component{
+class Step3 extends React.Component{
     constructor(props){
         super(props)
 
@@ -62,7 +64,7 @@ class Step1 extends React.Component{
 
                     <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="aadhar" color="secondary">Aadhar Number</InputLabel>
-                        <Input id="aadhar" color="secondary" fullWidth={true} type='input' required onChange={this.checkInput}/>
+                        <Input id="aadhar" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <Button variant="outlined">
@@ -72,7 +74,7 @@ class Step1 extends React.Component{
                     </FormControl>
                     <FormControl fullWidth={true} margin='dense'>
                         <InputLabel htmlFor="pan" color="secondary">Pan Number</InputLabel>
-                        <Input id="pan" color="secondary" fullWidth={true} type='password' required onChange={this.checkInput}/>
+                        <Input id="pan" color="secondary" fullWidth={true} type='text' required onChange={this.checkInput}/>
                     </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <Button variant="outlined">
@@ -89,7 +91,7 @@ class Step1 extends React.Component{
                         </Fab>
                     </Link>
 
-                    <Link to={''} onClick={(e)=>this.preventDefault(e)}>
+                    <Link to={SELLER_REGISTRATION_STEP_4} onClick={(e)=>this.preventDefault(e)}>
                         <Fab color='secondary' arial-label='next' size='medium' disabled={this.state.disableNext}>
                             <MdKeyboardArrowRight className='login-next-icon' />
                         </Fab>
@@ -100,4 +102,12 @@ class Step1 extends React.Component{
     }
 }
 
-export default withRouter(Step1)
+const mapStateToProps = (store) => ({
+    registrationFormData: store.registrationFormData
+})
+
+const mapActionToState = (dispatch) => ({
+    setRegistrationData: (data)=>dispatch(setRegistrationData(data))
+})
+
+export default withRouter(connect(mapStateToProps, mapActionToState)(Step3))

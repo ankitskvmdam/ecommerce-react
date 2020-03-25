@@ -32,14 +32,16 @@ class Step1 extends React.Component{
         const email = form['email'].value
         const password = form['password'].value
         const contact = form['contact'].value
+        const name = form['name'].value
 
-        if(email.length !=0 && password.length != 0){
+        if(email.length !=0 && password.length != 0 && name.length != 0 && contact.length != 0){
             this.setState({disableNext: false})
 
             this.props.setRegistrationData({
                 email,
                 password,
-                contact
+                contact,
+                name
             })
 
         }
@@ -50,13 +52,14 @@ class Step1 extends React.Component{
     }
 
     componentDidMount(){
-        const { email, password, contact } = this.props.registrationFormData
+        const { email, password, contact, name } = this.props.registrationFormData
         const form  = document.getElementById('seller-registration-form')
+        form['name'].value = name
         form['email'].value = email
         form['password'].value = password
         form['contact'].value = contact
 
-        if(email.length !=0 && password.length != 0)
+        if(name.length != 0 && email.length !=0 && password.length != 0 && contact.length != 0)
             this.setState({disableNext: false})
     }
 
@@ -70,6 +73,11 @@ class Step1 extends React.Component{
         return(
             <Box display="flex" flexDirection="column" flex="1">
                 <Box>
+                    <FormControl fullWidth={true} margin='normal'>
+                        <InputLabel htmlFor="name" color="secondary">Full Name</InputLabel>
+                        <Input id="name" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                    </FormControl>
+
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="email" color="secondary">Email address</InputLabel>
                         <Input id="email" color="secondary" fullWidth={true} required onChange={this.checkInput}/>

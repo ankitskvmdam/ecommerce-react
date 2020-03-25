@@ -10,8 +10,9 @@ import {
 import Step1 from './step1'
 import Step2 from './step2'
 import Step3 from './step3'
+import Step4 from './step4'
 
-import { SELLER_REGISTRATION_STEP_3, SELLER_REGISTRATION_STEP_1, SELLER_REGISTRATION_STEP_2, SELLER_LOGIN } from '../../common/script/url'
+import { SELLER_REGISTRATION_STEP_3, SELLER_REGISTRATION_STEP_1, SELLER_REGISTRATION_STEP_2, SELLER_LOGIN, SELLER_REGISTRATION_STEP_4 } from '../../common/script/url'
 
 class Registraion extends React.Component{
     constructor(props){
@@ -39,6 +40,7 @@ class Registraion extends React.Component{
                                 <Route path={SELLER_REGISTRATION_STEP_1} component={Step1} exact={true}/>
                                 <Route path={SELLER_REGISTRATION_STEP_2} component={Step2} exact={true}/>
                                 <Route path={SELLER_REGISTRATION_STEP_3} component={Step3} exact={true}/>
+                                <Route path={SELLER_REGISTRATION_STEP_4} component={Step4} exact={true}/>
                             </Switch>
                         </form>
                     </Paper>
