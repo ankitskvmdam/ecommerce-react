@@ -25,7 +25,7 @@ class Index extends React.Component {
 
                             <Typography variatnt="body2">
                                 IMPLEX CART INTERNATIONAL <br />
-                                384/II D iind floor, <br />
+                                384/II D 2nd floor, <br />
                                 Kuvempunagar, <br />
                                 Thavrekere Post, MAGADI MAIN ROAD, BANGALORE 562130. KARNATAKA INDIA <br />
                                 Phone: -- <a href="tel:+919886964861">+919886964861</a> <br />

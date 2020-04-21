@@ -13,7 +13,7 @@ class Index extends React.Component {
             <Container maxWidth='md' className="about-us">
                 <Box p={2}>
                     <Paper className="paper-about" elevation={3}>
-                        <Typography variant="h2" color='primary'>
+                        <Typography variant="h4">
                             About Us
                     </Typography>
                         <Typography variant="body1" gutterBottom>
@@ -79,7 +79,7 @@ class Index extends React.Component {
 
                 <Box p={2}>
                     <Paper className="paper-about" elevation={3}>
-                        <Typography variant="h2" color='primary'>
+                        <Typography variant="h4">
                             Our Vision
                     </Typography>
 
