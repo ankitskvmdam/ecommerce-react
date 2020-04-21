@@ -19,9 +19,53 @@
         object-fit: cover;
     }
 
-    .card-label{
+    .card-label {
         position: absolute;
         top: 1rem;
         left: 0.5rem;
+    }
+}
+
+
+.testimonial {
+    background: #f7f7f7;
+
+    .photo-container {
+        position: relative;
+
+        .photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid #007bff;
+            z-index: 100;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        .photo:after {
+            content: '';
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            background: #007bff;
+            border-radius: 50%;
+            margin: auto;
+            left: -100px;
+            z-index: -1;
+        }
+
+    }
+
+
+    color: #333333;
+
+    h5 {
+        color: #222831
     }
 }
