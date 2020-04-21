@@ -1,11 +1,11 @@
 import React from 'react'
-import { withRouter, NavLink as Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-import { AppBar, Toolbar, Button, Typography } from '@material-ui/core'
+import { AppBar, Toolbar } from '@material-ui/core'
 import Menu from './menu'
 
-// URL
-import { SELLER_LOGIN, HOME, ABOUT, CONTACT } from '../../common/script/url'
+import Logo from '../../common/assets/images/logo.png'
+
 
 class Index extends React.Component {
     constructor(props) {
@@ -16,9 +16,9 @@ class Index extends React.Component {
         return (
             <AppBar position='static' color='primary'>
                 <Toolbar className='flex-left'>
-                    <Typography className="flex-1" variant="h4">
-                        Implex
-                    </Typography>
+                    <div className="logo-container">
+                        <img src={Logo} className="logo" />
+                    </div>
                     <Menu />
                 </Toolbar>
             </AppBar>
