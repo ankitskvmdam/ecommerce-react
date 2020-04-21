@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { 
+import {
     Box,
     FormControl,
     InputLabel,
@@ -12,11 +12,11 @@ import {
 
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 
-import { SELLER_REGISTRATION_STEP_2} from '../../common/script/url'
+import { SELLER_REGISTRATION_STEP_2 } from '../../common/script/url'
 import { setRegistrationData } from '../../redux/actions/registraionForm'
 
-class Step1 extends React.Component{
-    constructor(props){
+class Step1 extends React.Component {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -28,15 +28,20 @@ class Step1 extends React.Component{
         this.preventDefault = this.preventDefault.bind(this)
     }
 
-    checkInput(){
-        const form  = document.getElementById('seller-registration-form')
+    checkInput() {
+        const form = document.getElementById('seller-registration-form')
         const email = form['email'].value
         const contact = form['contact'].value
         const name = form['name'].value
         const files = form['avatar']
-        
-        if(email.length !=0 && name.length != 0 && contact.length != 0 && files.files[0]){
-            this.setState({disableNext: false})
+
+        if (files.files[0] && files.files[0].size >= 512001) {
+            alert('File size is greater that 500kb')
+            files.value = ""
+        }
+
+        if (email.length != 0 && name.length != 0 && contact.length != 0 && files.files[0] && files.files[0].size < 512001) {
+            this.setState({ disableNext: false })
 
             this.props.setRegistrationData({
                 email,
@@ -47,50 +52,50 @@ class Step1 extends React.Component{
 
         }
 
-        else{
-            this.setState({disableNext: true})
+        else {
+            this.setState({ disableNext: true })
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { email, contact, name, avatar } = this.props.registrationFormData
-        const form  = document.getElementById('seller-registration-form')
+        const form = document.getElementById('seller-registration-form')
         form['name'].value = name
         form['email'].value = email
         form['contact'].value = contact
 
-        if(name.length != 0 && email.length !=0 && contact.length != 0 && avatar)
-            this.setState({disableNext: false})
+        if (name.length != 0 && email.length != 0 && contact.length != 0 && avatar)
+            this.setState({ disableNext: false })
     }
 
-    preventDefault(e){
-        if(this.state.disableNext){
+    preventDefault(e) {
+        if (this.state.disableNext) {
             e.preventDefault()
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Box display="flex" flexDirection="column" flex="1">
                 <Box>
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="name" color="secondary">Full Name</InputLabel>
-                        <Input id="name" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                        <Input id="name" color="secondary" fullWidth={true} required onChange={this.checkInput} />
                     </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <Button variant="outlined">
-                            Upload Your Photo &nbsp;&nbsp;&nbsp;
-                            <input type="file" accept="image/*" id="avatar" onChange={this.checkInput} />
+                            Upload Your Photo (only jpeg, max: 500kb)&nbsp;&nbsp;&nbsp;
+                            <input type="file" accept="image/jpeg" id="avatar" onChange={this.checkInput} />
                         </Button>
                     </FormControl>
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="email" color="secondary">Email address</InputLabel>
-                        <Input id="email" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                        <Input id="email" color="secondary" fullWidth={true} required onChange={this.checkInput} />
                     </FormControl>
 
                     <FormControl fullWidth={true} margin='normal'>
                         <InputLabel htmlFor="contact" color="secondary">Contact</InputLabel>
-                        <Input id="contact" color="secondary" fullWidth={true} required onChange={this.checkInput}/>
+                        <Input id="contact" color="secondary" fullWidth={true} required onChange={this.checkInput} />
                     </FormControl>
                 </Box>
                 <Box mt={2} display="flex" justifyContent='space-around' flex="1" alignItems="flex-end">
@@ -98,7 +103,7 @@ class Step1 extends React.Component{
                         <MdKeyboardArrowLeft className='login-next-icon' />
                     </Fab>
 
-                    <Link to={SELLER_REGISTRATION_STEP_2} onClick={(e)=>this.preventDefault(e)}>
+                    <Link to={SELLER_REGISTRATION_STEP_2} onClick={(e) => this.preventDefault(e)}>
                         <Fab color='secondary' arial-label='next' size='medium' disabled={this.state.disableNext}>
                             <MdKeyboardArrowRight className='login-next-icon' />
                         </Fab>
@@ -114,7 +119,7 @@ const mapStateToProps = (store) => ({
 })
 
 const mapActionToState = (dispatch) => ({
-    setRegistrationData: (data)=>dispatch(setRegistrationData(data))
+    setRegistrationData: (data) => dispatch(setRegistrationData(data))
 })
 
 export default withRouter(connect(mapStateToProps, mapActionToState)(Step1))

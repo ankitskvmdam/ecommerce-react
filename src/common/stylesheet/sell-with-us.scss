@@ -1,11 +1,14 @@
-.login-form{
+.login-form {
     margin: 2rem;
-    padding: 1.2rem;
-    width: 30rem;
-    height: 30rem;
+    padding: 1rem;
+    width: 33rem;
+    height: 35rem;
 
-    .login-next-icon{
+    .login-next-icon {
         font-size: 2rem;
     }
-    
+
+    button {
+        max-width: 33rem;
+    }
 }
