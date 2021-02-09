@@ -33,6 +33,9 @@ npm run build
 Running the website for development purposes is easy, just run the command below and acces it on http://localhost:8080
 ```bash
 npm run dev
+
+
+Learning Fork method. Don't mind anything.
 ```
 
 ## Contributors
